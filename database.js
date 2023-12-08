@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import { config } from "dotenv";
 
 config();
-
 const connection = mysql2.createPool({
   host: process.env["DB_HOST"],
   database: process.env["DB_NAME"],
@@ -14,6 +13,25 @@ const connection = mysql2.createPool({
   connectionLimit: 10,
   queueLimit: 0
 })
+
+// Run only Once
+// const createUserTable = (id) => {
+//   const command = `CREATE TABLE users (
+//     id int(11) NOT NULL AUTO_INCREMENT,
+//     username varchar(45) NOT NULL,
+//     email varchar(45) NOT NULL,
+//     password varchar(255) NOT NULL,
+//     PRIMARY KEY (id),
+//     UNIQUE KEY username_UNIQUE (username),
+//     UNIQUE KEY email_UNIQUE (email)
+//   ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`
+  
+//   connection.query(command, (err) => {
+//     if (err) console.log(err);
+//   })
+// }
+
+// createUserTable();
 
 const createUser = (user) => {
   return new Promise(async (resolve, reject) => {
