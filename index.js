@@ -5,8 +5,21 @@ import controllers from "./Controller.js"
 import { config } from "dotenv";
 
 config()
+
+const allowedOrigins = ['https://warm-belekoy-0055cc.netlify.app', "http://localhost:3000"]
+
+
 const app = express();
-app.use(cors({optionsSuccessStatus:200}))
+const corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  };
+app.use(cors(corsOptions));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 
