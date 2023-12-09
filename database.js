@@ -42,7 +42,7 @@ const createUser = (user) => {
       }
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(user.password, salt);
-      connection.query(`insert into users (email, username, password) values ('${user.email}','${user.name}','${hash}')`, (err, rows) => {
+      connection.query(`insert into users (email, username, password) values ('${user.email}','${user.username}','${hash}')`, (err, rows) => {
         if (err) {
           reject(err+"")
         }
@@ -71,7 +71,7 @@ const checkEmailUser = (email) => {
     }
   })
 }
-
+checkEmailUser();
 
 const getUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
