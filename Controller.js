@@ -5,7 +5,7 @@ const signupController = async (req, res) => {
     const user = req.body;
     const request = await database.createUser(user);
     console.log(request + "1");
-    res.status(200).json(user);
+    res.status(200).json({...user, success: true});
   } catch (err) {
     res.status(409).json({ error: err });
   }
