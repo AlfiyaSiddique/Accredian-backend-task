@@ -6,6 +6,7 @@ import { config } from "dotenv";
 
 config()
 
+// Alllowed origins for the server
 const allowedOrigins = ['https://warm-belekoy-0055cc.netlify.app', "http://localhost:3000"]
 
 
@@ -23,6 +24,8 @@ app.use(cors(corsOptions));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 
+
+// routes
 app.get("/", (req, res)=>{
     res.send("hello")
 })

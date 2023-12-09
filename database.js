@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import { config } from "dotenv";
 
 config();
+
+// Database Connection
 const connection = mysql2.createPool({
   host: process.env["DB_HOST"],
   database: process.env["DB_NAME"],
@@ -15,6 +17,8 @@ const connection = mysql2.createPool({
 })
 
 // Run only Once
+// Function to create Table
+
 // const createUserTable = (id) => {
 //   const command = `CREATE TABLE users (
 //     id int(11) NOT NULL AUTO_INCREMENT,
@@ -33,6 +37,7 @@ const connection = mysql2.createPool({
 
 // createUserTable();
 
+// Function to Create User
 const createUser = (user) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -57,6 +62,7 @@ const createUser = (user) => {
   })
 }
 
+// Function to find a user with email
 const checkEmailUser = (email) => {
   return new Promise((resolve, reject) => {
     try {
@@ -71,7 +77,6 @@ const checkEmailUser = (email) => {
     }
   })
 }
-checkEmailUser();
 
 const getUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
@@ -89,21 +94,7 @@ const getUserByEmail = (email) => {
   })
 }
 
-const getUserById = (id) => {
-  return new Promise((resolve, reject) => {
-    try {
-      connection.query(`select * from users where userid = '${id}'`, (err, row) => {
-        if (err) reject(err);
-        let user = row[0];
-        resolve(user);
-      })
-    } catch (e) {
-      console.log("2" + e)
-      reject(e);
-    }
-  })
-}
-
+// Function to comapare Password
 const comparePassword = (password, user) => {
   return new Promise((resolve, reject) => {
     try {
@@ -123,7 +114,6 @@ const database = {
   createUser: createUser,
   getUserByEmail: getUserByEmail,
   comparePassword: comparePassword,
-  getUserById: getUserById,
   connection: connection
 };
 
