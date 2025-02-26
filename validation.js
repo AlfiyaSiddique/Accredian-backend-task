@@ -1,4 +1,4 @@
-import { validationResult } from "express-validator";
+import { body } from "express-validator";
 
 const referralValidationRules = [
     body('referrerName').notEmpty().withMessage('Referrer name is required'),

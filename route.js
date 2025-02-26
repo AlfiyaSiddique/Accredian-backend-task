@@ -1,6 +1,6 @@
 import { Router } from "express";
-import referralValidationRules from "./validation";
-import referral from "./controller";
+import referralValidationRules from "./validation.js";
+import referral from "./controller.js";
 
 
 const referralRouter = Router()

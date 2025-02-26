@@ -1,4 +1,4 @@
-import { generateHTML } from "./html";
+import { generateHTML } from "./html.js";
 import { validationResult } from "express-validator";
 
 const createReferal = async (req, res) => {
