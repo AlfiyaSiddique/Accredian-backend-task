@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/referral', referralRouter)
+app.use('/api', referralRouter)
 
 app.get("/", (req, res)=>{
     res.json({message: "Job referral server"})
