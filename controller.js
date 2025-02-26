@@ -1,5 +1,18 @@
 import { generateHTML } from "./html.js";
 import { validationResult } from "express-validator";
+import { PrismaClient } from "@prisma/client";
+import nodemailer from "nodemailer"
+
+const prisma = new PrismaClient()
+
+//Mail will be sent from my personal email for the assignment
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
+  },
+});
 
 const createReferal = async (req, res) => {
     try {
@@ -52,6 +65,8 @@ const createReferal = async (req, res) => {
       res.status(500).json({ error: 'Failed to create referral' });
     }
   }
+
+// For these controllers I have added a postman collection to test and check due to lack of time to develop the frontend for this
 
 const getReferral = async (req, res) => {
     try {
